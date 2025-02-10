@@ -1,0 +1,22 @@
+baseURL = 'https://knowledge.seiya-world.com/'
+languageCode = 'ja'
+title = "World knowledge Base"
+theme = 'hugo-theme-relearn'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+ordersectionsby = "title"
+math = true
+collapsibleMenu = true
+alwaysopen = ""
+themeVariant = "neon"

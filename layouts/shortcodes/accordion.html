@@ -1,0 +1,48 @@
+<style>
+  .xAccordion {
+  /* タイトル */
+  &_title {
+    display: block;
+    padding: 0.5rem 0.7rem;
+    background: #ddd;
+    cursor: pointer;
+    &::after {
+      font-size: smaller;
+      color: #999;
+      content: "（クリックで開閉）";
+    }
+    &:hover {
+      background: #ccc;
+    }
+  }
+
+  &_body {
+    display: none;  /* デフォルトでは本文は非表示 */
+
+    /* 本文の共通設定 */
+    border: solid lightgray 1px;
+    padding: 0.5rem;
+  }
+
+  input {
+    display: none;  /* チェックボックスは非表示 */
+
+    /* ラベルをクリックしたら本文を開く（表示） */
+    &:checked + .xAccordion_body {
+      display: block;
+    }
+  }
+}
+
+</style>
+
+
+{{- $title := .Get "title" | default "例" }}
+{{- $rand := delimit (seq 9 | shuffle) "" }}
+<div class="xAccordion">
+  <label class="xAccordion_title" for="id-{{ $rand }}">{{ $title }}</label>
+  <input id="id-{{ $rand }}" type="checkbox">
+  <div class="xAccordion_body">
+    {{ .Inner }}
+  </div>
+</div>
