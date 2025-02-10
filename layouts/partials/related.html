@@ -1,0 +1,11 @@
+<h4>関連記事</h4>
+{{ $related := .Site.RegularPages.Related . | first 2 }}
+{{ with $related }}
+<ul>
+    {{ range . }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+    {{ end }}
+</ul>
+{{ end }}
+
+
