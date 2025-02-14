@@ -31,6 +31,10 @@ World Knowledge Baseは色々な情報のハブとなるような場所になる
 7. Xrea
 8. Github
 
+##### Seiya World
+Seiya Worldは人生の目標(もしくは指針)。理想の世界を創造することを目的としている。  
+World Knowledge Baseは世界内の知識を司る役割がある。  
+
 
 
 
