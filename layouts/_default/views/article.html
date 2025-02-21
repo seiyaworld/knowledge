@@ -12,6 +12,80 @@
   {{ partial "related.html" . }}
 </article>
 
+
+<h3>コメント</h3>
+<form id="commentForm">
+  <input type="text" id="name" placeholder="名前" required>
+  <textarea id="comment" placeholder="コメント" required></textarea>
+  <button type="submit">送信</button>
+</form>
+
+<div id="commentStatus"></div>
+
+<script>
+  document.getElementById("commentForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbzq4mly09hVR07nKv7JoY13M5eBxh9cNURzGIvCB-MuxvhZm7bvGPOAzH1lxYnbi5GPEQ/exec"; // Google Apps ScriptのURL
+    const name = document.getElementById("name").value;
+    const comment = document.getElementById("comment").value;
+    const page = window.location.href; // **絶対URLを使用**
+    
+    const data = { name, comment, page };
+
+    try {
+      const response = await fetch(scriptUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      if (result.status === "success") {
+        document.getElementById("commentStatus").innerText = "コメントを送信しました！";
+        document.getElementById("commentForm").reset(); // フォームをリセット
+      } else {
+        document.getElementById("commentStatus").innerText = "エラーが発生しました。";
+      }
+    } catch (error) {
+      document.getElementById("commentStatus").innerText = "通信エラーが発生しました。";
+    }
+  });
+
+  // ページ読み込み時にコメントを取得
+  async function fetchComments() {
+    const scriptUrl = "https://script.google.com/macros/s/AKfycbzq4mly09hVR07nKv7JoY13M5eBxh9cNURzGIvCB-MuxvhZm7bvGPOAzH1lxYnbi5GPEQ/exec";
+    const page = window.location.href;
+
+    try {
+      const response = await fetch(`${scriptUrl}?url=${encodeURIComponent(page)}`);
+      const comments = await response.json();
+      
+      const commentsContainer = document.getElementById("commentsList");
+      commentsContainer.innerHTML = ""; // 一度リセット
+
+      if (comments.length === 0) {
+        commentsContainer.innerHTML = "<p>まだコメントがありません。</p>";
+        return;
+      }
+
+      comments.forEach(comment => {
+        const commentElement = document.createElement("div");
+        commentElement.innerHTML = `<strong>${comment.name}</strong>: ${comment.comment}`;
+        commentsContainer.appendChild(commentElement);
+      });
+
+    } catch (error) {
+      console.error("コメントの取得に失敗しました。", error);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", fetchComments);
+</script>
+
+
+
+
 <script src="https://giscus.app/client.js"
         data-repo="seiyaworld/knowledge"
         data-repo-id="R_kgDON2_3qg"
