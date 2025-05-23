@@ -1,0 +1,10 @@
+[[main]]
+  name = "Game"
+  pageRef = "game"
+  weight = 10
+
+[[main]]
+  name = "A"
+  pageRef = "add"
+  weight = 10
+  parent = "Game"

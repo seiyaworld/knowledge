@@ -1,6 +1,6 @@
 baseURL = 'https://knowledge.seiya-world.com/'
 languageCode = 'ja'
-title = "World knowledge Base"
+defaultContentLanguage = "ja"
 theme = 'blowfish'
 
 [markup]
