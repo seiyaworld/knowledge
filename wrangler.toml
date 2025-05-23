@@ -1,0 +1,7 @@
+name = "knowledge"
+pages_build_output_dir = "./public"
+[vars]
+HUGO_ENV = "production"
+CF_PAGES_URL = "https://knowledge.seiya-world.com"
+HUGO_VERSION = "0.127.0
+YARN_VERSION = "1.22.22"

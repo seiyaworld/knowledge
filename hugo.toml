@@ -1,0 +1,59 @@
+baseURL = 'https://knowledge.seiya-world.com/'
+languageCode = 'ja'
+title = "World knowledge Base"
+theme = 'hugo-theme-relearn'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      [markup.goldmark.extensions.passthrough]
+        enable = true
+        [markup.goldmark.extensions.passthrough.delimiters]
+          block = [['\[', '\]'], ['$$', '$$']]
+          inline = [['\(', '\)']]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+ordersectionsby = "title"
+math = true
+collapsibleMenu = true
+alwaysopen = ""
+themeVariant = "neon"
+titleSeparator = '|'
+  [params.page.comment.giscus]
+        enable = true
+        repo = "seiyaworld/knowledge"
+        repoId = "R_kgDON2_3qg"
+        category = ""
+        categoryId = ""
+        mapping = ""
+        origin = "https://giscus.app" # FixIt NEW | 0.3.7 Or set it to your self-hosted domain
+        strict = "0" # FixIt NEW | 0.2.18
+        term = ""
+        reactionsEnabled = "1"
+        emitMetadata = "0"
+        inputPosition = "bottom" # ["top", "bottom"]
+        lang = "ja"
+        lightTheme = "light"
+        darkTheme = "dark"
+        lazyLoad = true
+
+
+
+[related]
+  includeNewer = true
+  threshold = 80
+  toLower = true
+
+[[related.indices]]
+  name = "tags"
+  weight = 80
+
+[[related.indices]]
+  name = "categories"
+  weight = 60
+
+[[related.indices]]
+  name = "date"
+  weight = 10
